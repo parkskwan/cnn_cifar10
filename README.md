@@ -25,7 +25,9 @@ import numpy as np
 import pandas as pd
 ```
 
-### cifar10를 CNN 에서 트레이닝 시키기 위한 전처리 작업 : 2차원 (32 X 32), RGB(3) 그리고 가장 큰 값이 1.0이 되도록 하는 루틴    
+### cifar10를 CNN 에서 트레이닝 시키기 위한 전처리 작업
+
+2차원 (32 X 32), RGB(3) 그리고 가장 큰 값이 1.0이 되도록 하는 루틴    
 
 ```
 cifar10_w = 32; cifar10_h = 32; cifar10_c = 3; 
