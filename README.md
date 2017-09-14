@@ -43,6 +43,11 @@ X_train = X_train.reshape(X_train.shape[0], cifar10_w, cifar10_h, cifar10_c).ast
 X_test  = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
 
 print(X_train.shape); print(X_test.shape)
+
+Y_train = np_utils.to_categorical(y_train, 10)
+Y_test = np_utils.to_categorical(y_test, 10)
+
+print('y_test[0] : ', y_test[0][0], ', Y_test[0] :', Y_test[0])
 ```
 
 ### cifar10을 제대로 load했는지 그림을 plot 해서 알아보는 루틴
