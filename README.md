@@ -37,6 +37,7 @@ X_test  = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astyp
 print(X_train.shape); print(X_test.shape)
 ```
 
+## cifar10 그림을 plot 해보는 루틴
 ```python
 %matplotlib inline
 
