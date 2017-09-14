@@ -183,6 +183,27 @@ print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.
 
 ### 잘못 예측한 결과를 찾아서 plot하는 작업
 
+잘못 예측한 결과를 찾아서 plot해서 무엇이 문제인지 고민 해야 하는 가장 중요한 작업이 남아있습니다. 그러나 여기서는 더 이상 진행은 하지 않고 plot만 하겠습니다.
 
-수정중
-....
+```
+y_pred = model.predict_classes(X_test)
+
+true_preds = [(x,y) for (x,y,p) in zip(X_test, y_test, y_pred) if y == p]
+false_preds = [(x,y,p) for (x,y,p) in zip(X_test, y_test, y_pred) if y != p]
+print("Number of true predictions: ", len(true_preds))
+print("Number of false predictions:", len(false_preds))
+
+
+nb_classes = 10
+
+plt.figure(figsize=(8, 8))
+for i,(x,y,p) in enumerate(false_preds[0:15]):
+    plt.subplot(3, 5, i+1)
+    plt.imshow(x, interpolation='nearest')
+    plt.title("y: %s\np: %s" % (categories[int(y)], categories[int(p)]), fontsize=11, loc='left')
+    plt.axis('off')
+    plt.subplots_adjust(wspace=0.1, hspace=0.1)  
+    
+```
+
+작성중....
