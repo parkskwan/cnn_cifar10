@@ -31,7 +31,11 @@ X_test  = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astyp
 print(X_train.shape); print(X_test.shape)
 ```
 
-```
+```python
+%matplotlib inline
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 from scipy.misc import toimage
 
 nclasses = 10; num = 5; pos = 1
@@ -69,12 +73,7 @@ from keras.layers import Activation, Dropout, Flatten, Dense
 from keras.callbacks import EarlyStopping
 ```
 
-```python
-%matplotlib inline
 
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
-```
 
 
 ```python
