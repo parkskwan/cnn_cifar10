@@ -157,7 +157,7 @@ _________________________________________________________________
 None
 ```
 
-### cifar10-model의 결과가 있으면 그것을 load하고 없으면 train set을 적용하여 계산하는 작업
+### cifar10-model의 train 결과가 있으면 그것을 load하고 없으면 train set을 적용하여 계산하는 작업
 
 ```
 hdf5_file="./cifar10-model.hdf5"
