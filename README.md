@@ -20,18 +20,46 @@ from keras.datasets import cifar10
 from keras.utils import np_utils
 ```
 
-```c
+```
 cifar10_w = 32; cifar10_h = 32; cifar10_c = 3; 
 
 (X_train, y_train), (X_test, y_test) = cifar10.load_data()
 
 X_train = X_train.reshape(X_train.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
-X_test = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
+X_test  = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
 
 print(X_train.shape); print(X_test.shape)
 ```
 
+```
+from scipy.misc import toimage
 
+nclasses = 10; num = 5; pos = 1
+
+categories = ["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"]
+
+plt.figure(figsize=(17, 17), frameon=False)
+
+
+for targetClass in range(nclasses):
+    targetIdx = []
+   
+    for i in range(len(y_train)):
+        if y_train[i][0] == targetClass:
+            targetIdx.append(i)
+
+    np.random.shuffle(targetIdx)
+    for idx in targetIdx[:num]:
+        img = toimage(X_train[idx])
+        plt.subplot(nclasses, num, pos)
+        plt.imshow(img, interpolation='nearest')
+        plt.title("%s" % (categories[targetClass]), fontsize=11, loc='left')
+        plt.subplots_adjust(wspace=0.1, hspace=0.4)  
+        plt.axis('off')
+        pos += 1
+
+plt.show()
+```
 
 ```python
 from keras.models import Sequential
@@ -55,3 +83,6 @@ import h5py
 import numpy as np
 import pandas as pd
 ```
+
+
+
