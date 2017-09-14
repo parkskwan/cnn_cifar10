@@ -183,4 +183,6 @@ print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.
 
 ### 잘못 예측한 결과를 찾아서 plot하는 작업
 
+
+수정중
 ....
