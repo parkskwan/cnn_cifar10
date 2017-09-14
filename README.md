@@ -25,7 +25,8 @@ import numpy as np
 import pandas as pd
 ```
 
-### cifar10를 cnn에서 트레이닝 시키기 위한 전처리 작업 : 2차원 (32 X 32), RGB(3) 그리고 가장 큰 값이 1.0이 되도록 하는    
+### cifar10를 CNN 에서 트레이닝 시키기 위한 전처리 작업 : 2차원 (32 X 32), RGB(3) 그리고 가장 큰 값이 1.0이 되도록 하는 루틴    
+
 ```
 cifar10_w = 32; cifar10_h = 32; cifar10_c = 3; 
 
@@ -73,7 +74,7 @@ for targetClass in range(nclasses):
 plt.show()
 ```
 
-### cifar10를 cnn의 MLP를 만들어 주는 루틴
+### CNN의 MLP를 만들어 주는 루틴
 
 ```python
 from keras.models import Sequential
@@ -110,7 +111,7 @@ model.compile(loss='binary_crossentropy', optimizer=opt[1], metrics=['accuracy']
 
 print(model.summary())
 ```
-### cifar10를 cnn의 MLP가 제대로 만들어 졌는지 확인 하는 루틴
+### CNN의 MLP가 제대로 만들어 졌는지 확인
 
 ```
 # print(model.summary()) : 출력되는 결과
@@ -154,6 +155,8 @@ _________________________________________________________________
 None
 ```
 
+### cifar10-model의 결과가 있으면 그것을 load하고 없으면 train set을 적용하여 계산하는 작업
+
 ```
 hdf5_file="./cifar10-model.hdf5"
 
@@ -164,9 +167,14 @@ else:
     model.save_weights(hdf5_file)
 ```
 
+### cifar10-model의 결과을 적용하여 test set을 계산하는 작업
+
 ```
 score = model.evaluate(X_test, Y_test, batch_size=bsize)
 print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.2f%%" % (100-score[1]*100))
 ```
+생각보다 상당히 괜찮은 결과가 나왔다.
+계산된 결과 : loss = 0.142800596654 , accuracy = 0.944240015745 , baseline error: 5.58%
 
-loss = 0.142800596654 , accuracy = 0.944240015745 , baseline error: 5.58%
+
+
