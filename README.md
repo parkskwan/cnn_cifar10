@@ -181,9 +181,9 @@ print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.
 
 
 
-### 잘못 예측한 결과를 찾아서 plot하는 작업
+### 잘못 예측한 결과를 찾아서 plot하는 작업을 해야 하는 이유
 
-잘못 예측한 결과를 찾아서 plot해서 무엇이 문제인지 고민 해야 하는 가장 중요한 작업이 남아있습니다. 그러나 여기서는 더 이상 진행은 하지 않고 plot만 하겠습니다.
+잘못 예측한 결과를 찾아 plot 한 다음 무엇이 문제인지 고민 해야 하는 가장 중요한 작업이 남아있습니다. 그러나 여기서는 더 이상 진행은 하지 않고 plot만 하겠습니다.
 
 ```
 y_pred = model.predict_classes(X_test)
@@ -206,4 +206,31 @@ for i,(x,y,p) in enumerate(false_preds[0:15]):
     
 ```
 
+### train된 filters을 plot하는 작업
+
+보통은 filter를 plot해서 무언가을 알 수 있지는 않다. 그러나 사람들은 train된 filters를 보고 싶어 한다.
+```
+from keras import backend as K
+
+W = model.layers[0].get_weights()[0]
+
+print(W.shape)
+if K.image_dim_ordering() == 'tf':
+    # (nb_filter, nb_channel, nb_row, nb_col)
+    W = W.transpose(3, 2, 0, 1)
+
+    nb_filter, nb_channel, nb_row, nb_col = W.shape
+    print(W.shape)
+
+    
+#plt.figure()
+plt.figure(figsize=(10, 10), frameon=False)
+for i in range(32):
+        im = W[i]
+        plt.subplot(6, 6, i + 1)
+        plt.axis('off')
+        plt.imshow(im)
+        plt.subplots_adjust(wspace=0.1, hspace=0.1)
+plt.show()
+```
 작성중....
