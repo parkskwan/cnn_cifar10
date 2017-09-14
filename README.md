@@ -16,7 +16,22 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 from keras.datasets import cifar10
+
+from keras.utils import np_utils
 ```
+
+```c
+cifar10_w = 32; cifar10_h = 32; cifar10_c = 3; 
+
+(X_train, y_train), (X_test, y_test) = cifar10.load_data()
+
+X_train = X_train.reshape(X_train.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
+X_test = X_test.reshape(X_test.shape[0], cifar10_w, cifar10_h, cifar10_c).astype('float32') / 255
+
+print(X_train.shape); print(X_test.shape)
+```
+
+
 
 ```python
 from keras.models import Sequential
@@ -24,8 +39,6 @@ from keras.layers.convolutional import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras.callbacks import EarlyStopping
-
-from keras.utils import np_utils
 ```
 
 ```python
