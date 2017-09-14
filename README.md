@@ -176,6 +176,7 @@ score = model.evaluate(X_test, Y_test, batch_size=bsize)
 print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.2f%%" % (100-score[1]*100))
 ```
 생각보다 상당히 괜찮은 결과가 나왔다.
+
 계산된 결과 : loss = 0.142800596654 , accuracy = 0.944240015745 , baseline error: 5.58%
 
 
