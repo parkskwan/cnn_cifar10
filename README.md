@@ -105,6 +105,9 @@ model.compile(loss='binary_crossentropy', optimizer=opt[1], metrics=['accuracy']
 
 print(model.summary())
 ```
+
+```
+# print(model.summary()) : 출력되는 결과
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -143,7 +146,7 @@ Trainable params: 1,667,594
 Non-trainable params: 0
 _________________________________________________________________
 None
-
+```
 
 ```
 hdf5_file="./cifar10-model.hdf5"
