@@ -18,6 +18,11 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 from keras.datasets import cifar10
 
 from keras.utils import np_utils
+
+import h5py
+
+import numpy as np
+import pandas as pd
 ```
 
 ```
@@ -71,17 +76,32 @@ from keras.layers.convolutional import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras.callbacks import EarlyStopping
+
+nfilter = 32; bsize = 200; nb_classes = 10; opt = ['adam','rmsprop']
+
+model = Sequential()
+
+model.add(Conv2D(nfilter, (3, 3), padding="same", input_shape = X_train.shape[1:]))
+model.add(Activation('relu'))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+
+
+model.add(Conv2D(2*nfilter, (3, 3), padding="same"))
+model.add(Activation('relu'))
+model.add(Conv2D(2*nfilter, (3, 3)))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.25))
+
+
+model.add(Flatten())
+model.add(Dense(512))
+model.add(Activation('relu'))
+model.add(Dropout(0.5))
+model.add(Dense(nb_classes))
+model.add(Activation('softmax'))
+
+model.compile(loss='binary_crossentropy', optimizer=opt[1], metrics=['accuracy'])
+
 ```
-
-
-
-
-```python
-import h5py
-
-import numpy as np
-import pandas as pd
-```
-
-
 
