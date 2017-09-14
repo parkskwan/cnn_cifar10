@@ -105,3 +105,19 @@ model.compile(loss='binary_crossentropy', optimizer=opt[1], metrics=['accuracy']
 
 ```
 
+```
+hdf5_file="./cifar10-model.hdf5"
+
+if os.path.exists(hdf5_file):
+    model.load_weights(hdf5_file)
+else:
+    model.fit(X_train, Y_train, validation_data=(X_test, Y_test), batch_size=bsize, epochs=5)
+    model.save_weights(hdf5_file)
+```
+
+```
+score = model.evaluate(X_test, Y_test, batch_size=bsize)
+print("\n\n\n\nloss =", score[0], ", accuracy =", score[1],", baseline error: %.2f%%" % (100-score[1]*100))
+```
+
+loss = 0.142800596654 , accuracy = 0.944240015745 , baseline error: 5.58%
